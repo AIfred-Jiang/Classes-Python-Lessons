@@ -8,7 +8,7 @@ class Teacher:
         self.image = image
     
     def input_phrase(self):
-        return f"{self.phrase} {self.answer} {self.model}"
+        return f"{self.phrase} {self.answer} {self.image}"
     
     def to_dict(self):
         return {"phrase": self.phrase, "answer": self.answer, "image": self.image}
@@ -33,9 +33,7 @@ def t():
      b = input("What is the correct answer?")
 
      c = input("Link of image reference?")
-
 new_flashcard = Teacher("a","b","c")
-
 try:
     with open("f.json", "r") as file:
         fc_data = json.load(file)
@@ -50,8 +48,8 @@ with open("fc.json", "w") as file:
 print("Flashcard added successfully!")
 
 continue_input = input("Would you like to add another flashcard? (y/n): ")
-if continue_input == 'n':
-    break
+if continue_input == "n":
+     break
 
 
 def s():
@@ -88,3 +86,5 @@ while True:
      break
     print(f"Final Score: {score} / {total_questions}")
     print("Thank you for playing!")
+
+main()
