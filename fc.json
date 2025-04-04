@@ -1,7 +1,32 @@
 [
     {
-        "phrase": "a",
-        "answer": "b",
-        "image": "c"
+        "phrase": "34 x 42",
+        "answer": "1428",
+        "image": "n/a"
+    },
+    {
+        "phrase": "79 x 89",
+        "answer": "7031",
+        "image": "n/a"
+    },
+    {
+        "phrase": "55 x 56",
+        "answer": "3080",
+        "image": "n/a"
+    },
+    {
+        "phrase": "34 x 69",
+        "answer": "2346",
+        "image": "n/a"
+    },
+    {
+        "phrase": "2 x 2",
+        "answer": "4",
+        "image": "n/a"
+    },
+    {
+        "phrase": "3 x 3",
+        "answer": "9",
+        "image": "n/a"
     }
 ]

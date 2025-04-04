@@ -14,7 +14,7 @@ class Teacher:
         return {"phrase": self.phrase, "answer": self.answer, "image": self.image}
 
 def main():
-    mode = input("Choose your mode: Teacher (T) or Student (S): ").strip().lower()
+    mode = input("Choose your mode: Teacher (T) or Student (S): ")
 
     if mode == 'T':
         print("Teacher Mode:")
@@ -25,31 +25,31 @@ def main():
     else:
         print("Invalid input. Please choose 'T' for Teacher or 'S' for Student.")
 
-# 1
+
 def t():
     while True:
-     a = input("What phrase would you like to input?")
+        a = input("What phrase would you like to input? ")
+        b = input("What is the correct answer? ")
+        c = input("Link of image reference (optional): ")
 
-     b = input("What is the correct answer?")
+        new_flashcard = Teacher(a, b, c)
 
-     c = input("Link of image reference?")
-new_flashcard = Teacher("a","b","c")
-try:
-    with open("f.json", "r") as file:
-        fc_data = json.load(file)
-except FileNotFoundError:
-        fc_data = []
+        try:
+            with open("fc.json", "r") as file:
+                fc_data = json.load(file)
+        except FileNotFoundError:
+            fc_data = []
 
-fc_data.append(new_flashcard.to_dict())
+        fc_data.append(new_flashcard.to_dict())
 
-with open("fc.json", "w") as file:
-    json.dump(fc_data, file, indent=4)
-  
-print("Flashcard added successfully!")
+        with open("fc.json", "w") as file:
+            json.dump(fc_data, file, indent=4)
 
-continue_input = input("Would you like to add another flashcard? (y/n): ")
-if continue_input == "n":
-     break
+        print("Flashcard added successfully!")
+
+        continue_input = input("Would you like to add another flashcard? (y/n): ")
+        if continue_input == "n":
+            break
 
 
 def s():
@@ -59,32 +59,32 @@ def s():
     except FileNotFoundError:
         print("No flashcards found. Please add some flashcards in Teacher Mode.")
         return
-score = 0
-streak = 0
-total_questions = 0
 
-while True:
-    flashcard = random.choice(fc_data)
-    question = flashcard['phrase']
-    correct_answer = flashcard['answer']
+    score = 0
+    streak = 0
+    total_questions = 0
 
-    print(f"Question: {question})")
-    user_answer = input("Your answer:")
+    while True:
+        flashcard = random.choice(fc_data)
+        question = flashcard['phrase']
+        correct_answer = flashcard['answer']
 
-    if user_answer == correct_answer:
-        print("Correct!")
-        score = score + 1
-        streak = streak + 1
-        total_questions = total_questions + 1
-    else:
-        print(f"Incorrect. The correct answer was: {correct_answer}")
-        streak = 0
-        total_questions = total_questions + 1
-    
-    continue_game = input("Do you want to continue? (y/n): ")
-    if continue_game == "n":
-     break
-    print(f"Final Score: {score} / {total_questions}")
-    print("Thank you for playing!")
+        print(f"Question: {question}")
+        user_answer = input("Your answer: ")
+
+        if user_answer == correct_answer:
+            print("Correct!")
+            score += 1
+            streak += 1
+        else:
+            print(f"Incorrect. The correct answer was: {correct_answer}")
+            streak = 0
+        
+        total_questions += 1
+
+        continue_game = input("Do you want to continue? (y/n): ")
+        if continue_game == "n":
+         print(f"You ended with a streak of {streak} with {score}/{total_questions}")
+         break
 
 main()
